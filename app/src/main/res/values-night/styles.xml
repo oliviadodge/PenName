@@ -18,14 +18,14 @@
 
     <!-- To see how these attributes are used, please visit https://material.io/develop/android/theming/color/ -->
     <style name="Base.Theme.PenName" parent="Theme.MaterialComponents.DayNight.NoActionBar">
-        <item name="colorPrimary">@color/penName_green_900</item>
+        <item name="colorPrimary">@color/penName_blue_900</item>
         <item name="colorOnPrimary">@color/penName_yellow_300</item>
         <item name="colorPrimaryDark">@color/penName_gray_50_a600</item>
         <item name="colorOnSurface">@color/penName_white</item>
-        <item name="colorAccent">@color/penName_green_300</item>
-        <item name="colorSurface">@color/penName_green_900</item>
+        <item name="colorAccent">@color/penName_blue_300</item>
+        <item name="colorSurface">@color/penName_blue_900</item>
         <item name="colorSecondary">@color/penName_yellow_300</item>
-        <item name="android:colorBackground">@color/penName_green_900</item>
+        <item name="android:colorBackground">@color/penName_blue_900</item>
     </style>
 
     <style name="Theme.PenName" parent="Base.Theme.PenName"/>
