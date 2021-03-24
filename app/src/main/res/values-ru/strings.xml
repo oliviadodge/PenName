@@ -27,7 +27,7 @@
     <string name="added_plant_to_garden">Растение добавлено в ваш сад</string>
     <string name="plant_date_header">Посажен</string>
     <string name="watered_date_header">Последний полив</string>
-    <string name="share_text_plant">Попробуйте %s в приложении Android Sunflower</string>
+    <string name="share_text_plant">Попробуйте %s в приложении Android PenName</string>
 
     <!-- String plurals and their related prefix / suffix strings -->
     <string name="watering_needs_prefix">Необходим полив</string>

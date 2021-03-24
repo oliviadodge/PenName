@@ -27,7 +27,7 @@
     <string name="plant_date_header">Ekiliş Tarihi</string>
     <string name="watered_date_header">Son Sulama Tarihi</string>
     <string name="menu_item_share_plant">Paylaş</string>
-    <string name="share_text_plant">%s bitkisini Android Sunflower uygulamasında inceleyin</string>
+    <string name="share_text_plant">%s bitkisini Android PenName uygulamasında inceleyin</string>
 
     <!-- String plurals and their related prefix / suffix strings -->
     <string name="watering_needs_prefix">Sulama gereksinimi:</string>

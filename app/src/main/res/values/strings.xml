@@ -17,7 +17,7 @@
 <resources>
 
     <!-- Resources that do not require translation -->
-    <string name="app_name" translatable="false">Sunflower</string>
+    <string name="app_name" translatable="false">PenName</string>
 
     <!-- Translatable resources -->
     <string name="menu_filter_by_grow_zone" translation_description="The label for the menu item to filter the displayed plants by grow zone.">Filter by grow zone</string>
@@ -31,7 +31,7 @@
     <string name="plant_date_header" translation_description="Text that is shown on each plant on the 'My Garden' screen which says the word Planted to show date of planting below">Planted</string>
     <string name="watered_date_header" translation_description="Text that is shown on each plant on the 'My Garden' screen which says the word Last Watered to show date of last watering below">Last Watered</string>
     <string name="menu_item_share_plant" translation_description="The label for the Share menu item">Share</string>
-    <string name="share_text_plant" translation_description="The default messaged used when sharing a plant on SNS, etc.">Check out the %s plant in the Android Sunflower app</string>
+    <string name="share_text_plant" translation_description="The default messaged used when sharing a plant on SNS, etc.">Check out the %s plant in the Android PenName app</string>
     <string name="gallery_title" translation_description="Title for the photo gallery screen">Photos by Unsplash</string>
 
     <!-- String plurals and their related prefix / suffix strings -->

@@ -26,10 +26,10 @@ android {
         dataBinding true
     }
     defaultConfig {
-        applicationId "com.google.samples.apps.sunflower"
+        applicationId "com.olivia.samples.apps.penName"
         minSdkVersion rootProject.minSdkVersion
         targetSdkVersion rootProject.targetSdkVersion
-        testInstrumentationRunner "com.google.samples.apps.sunflower.utilities.MainTestRunner"
+        testInstrumentationRunner "com.olivia.samples.apps.penName.utilities.MainTestRunner"
         versionCode 1
         versionName "0.1.6"
         vectorDrawables.useSupportLibrary true

@@ -27,7 +27,7 @@
     <string name="plant_date_header">Plantée</string>
     <string name="watered_date_header">Dernier arrosage</string>
     <string name="menu_item_share_plant">Partager</string>
-    <string name="share_text_plant">Regardez la plante %s sur l\'application Sunflower</string>
+    <string name="share_text_plant">Regardez la plante %s sur l\'application PenName</string>
 
     <!-- String plurals and their related prefix / suffix strings -->
     <string name="watering_needs_prefix">Arrosage nécessaire</string>

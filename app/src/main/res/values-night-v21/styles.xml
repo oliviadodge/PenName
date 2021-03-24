@@ -16,7 +16,7 @@
 
 <resources>
 
-    <style name="Theme.Sunflower" parent="Base.Theme.Sunflower">
+    <style name="Theme.PenName" parent="Base.Theme.PenName">
         <item name="android:windowTranslucentStatus">true</item>
     </style>
 

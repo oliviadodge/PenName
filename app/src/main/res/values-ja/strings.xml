@@ -27,7 +27,7 @@
     <string name="plant_date_header">植えた日</string>
     <string name="watered_date_header">最後に水をあげた日</string>
     <string name="menu_item_share_plant">共有</string>
-    <string name="share_text_plant">%s という植物を「Sunflower」アプリで見てみてください</string>
+    <string name="share_text_plant">%s という植物を「PenName」アプリで見てみてください</string>
 
     <!-- String plurals and their related prefix / suffix strings -->
     <!-- Item quantities for zero and one are not used in Japanese -->
