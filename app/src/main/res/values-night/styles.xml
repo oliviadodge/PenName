@@ -17,6 +17,7 @@
 <resources>
 
     <!-- To see how these attributes are used, please visit https://material.io/develop/android/theming/color/ -->
+   <!-- TODO change these cause they are prolly all screwed up-->
     <style name="Base.Theme.PenName" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <item name="colorPrimary">@color/penName_blue_900</item>
         <item name="colorOnPrimary">@color/penName_yellow_300</item>
