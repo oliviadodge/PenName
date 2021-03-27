@@ -16,8 +16,8 @@
   -->
 
 <resources>
-    <color name="penName_black">#de000000</color>
-    <color name="penName_gray_50">#fafafa</color>
+    <color name="gray">#fafafa</color>
+    <!--TODO remove unused colors-->
     <color name="penName_gray_50_a600">#99fafafa</color>
     <color name="penName_blue_300">#00E5FF</color>
     <color name="penName_blue_500">#ABF3FB</color>
@@ -26,4 +26,12 @@
     <color name="penName_white">#deffffff</color>
     <color name="penName_yellow_300">#f8f99f</color>
     <color name="penName_yellow_500">#ffff63</color>
+
+    <color name="blue">#42a5f5</color>
+    <color name="blue_light">#80d6ff</color>
+    <color name="blue_dark">#0077c2</color>
+    <color name="orange">#ff5722</color>
+    <color name="orange_light">#ff8a50</color>
+    <color name="orange_dark">#c41c00</color>
+    <color name="black">#000000</color>
 </resources>

@@ -18,13 +18,12 @@
 
     <!-- To see how these attributes are used, please visit https://material.io/develop/android/theming/color/ -->
     <style name="Base.Theme.PenName" parent="Theme.MaterialComponents.DayNight.NoActionBar">
-        <item name="colorPrimary">@color/penName_blue_500</item>
-        <item name="colorOnPrimary">@color/penName_blue_900</item>
-        <item name="colorPrimaryDark">@color/penName_blue_900</item>
-        <item name="colorOnSurface">@color/penName_black</item>
-        <item name="colorAccent">@color/penName_yellow_500</item>
-        <item name="colorSurface">@color/penName_gray_50</item>
-        <item name="colorSecondary">@color/penName_blue_700</item>
+        <item name="colorPrimary">@color/blue</item>
+        <item name="colorPrimaryVariant">@color/blue_dark</item>
+        <item name="colorOnPrimary">@color/black</item>
+        <item name="colorSecondary">@color/orange</item>
+        <item name="colorSecondaryVariant">@color/orange_dark</item>
+        <item name="colorOnSecondary">@color/black</item>
     </style>
 
     <style name="Theme.PenName" parent="Base.Theme.PenName"/>
@@ -32,12 +31,6 @@
     <style name="Theme.PenName.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
-    </style>
-
-    <style name="Theme.PenName.AppBarOverlay" parent="ThemeOverlay.MaterialComponents.Dark.ActionBar"/>
-
-    <style name="TextAppearance.PenName.Toolbar.Text" parent="TextAppearance.MaterialComponents.Headline5" >
-        <item name="android:textColor">?attr/colorOnSurface</item>
     </style>
 
 </resources>

@@ -16,30 +16,30 @@
 
 <resources>
 
-    <!-- To see how these attributes are used, please visit https://material.io/develop/android/theming/color/ -->
-   <!-- TODO change these cause they are prolly all screwed up-->
-    <style name="Base.Theme.PenName" parent="Theme.MaterialComponents.DayNight.NoActionBar">
-        <item name="colorPrimary">@color/penName_blue_900</item>
-        <item name="colorOnPrimary">@color/penName_yellow_300</item>
-        <item name="colorPrimaryDark">@color/penName_gray_50_a600</item>
-        <item name="colorOnSurface">@color/penName_white</item>
-        <item name="colorAccent">@color/penName_blue_300</item>
-        <item name="colorSurface">@color/penName_blue_900</item>
-        <item name="colorSecondary">@color/penName_yellow_300</item>
-        <item name="android:colorBackground">@color/penName_blue_900</item>
-    </style>
+<!--    &lt;!&ndash; To see how these attributes are used, please visit https://material.io/develop/android/theming/color/ &ndash;&gt;-->
+<!--   &lt;!&ndash; TODO change these cause they are prolly all screwed up. Need a lighter shade of orange-->
+<!--    <style name="Base.Theme.PenName" parent="Theme.MaterialComponents.DayNight.NoActionBar">-->
+<!--        <item name="colorPrimary">@color/penName_blue_900</item>-->
+<!--        <item name="colorOnPrimary">@color/penName_yellow_300</item>-->
+<!--        <item name="colorPrimaryDark">@color/penName_gray_50_a600</item>-->
+<!--        <item name="colorOnSurface">@color/penName_white</item>-->
+<!--        <item name="colorAccent">@color/penName_blue_300</item>-->
+<!--        <item name="colorSurface">@color/penName_blue_900</item>-->
+<!--        <item name="colorSecondary">@color/penName_yellow_300</item>-->
+<!--        <item name="android:colorBackground">@color/penName_blue_900</item>-->
+<!--    </style>-->
 
-    <style name="Theme.PenName" parent="Base.Theme.PenName"/>
+<!--    <style name="Theme.PenName" parent="Base.Theme.PenName"/>-->
 
-    <style name="Theme.PenName.NoActionBar">
-        <item name="windowActionBar">false</item>
-        <item name="windowNoTitle">true</item>
-    </style>
+<!--    <style name="Theme.PenName.NoActionBar">-->
+<!--        <item name="windowActionBar">false</item>-->
+<!--        <item name="windowNoTitle">true</item>-->
+<!--    </style>-->
 
-    <style name="Theme.PenName.AppBarOverlay" parent="ThemeOverlay.MaterialComponents.Dark.ActionBar"/>
+<!--    <style name="Theme.PenName.AppBarOverlay" parent="ThemeOverlay.MaterialComponents.Dark.ActionBar"/>-->
 
-    <style name="TextAppearance.PenName.Toolbar.Text" parent="TextAppearance.MaterialComponents.Headline5" >
-        <item name="android:textColor">?attr/colorOnSurface</item>
-    </style>
+<!--    <style name="TextAppearance.PenName.Toolbar.Text" parent="TextAppearance.MaterialComponents.Headline5" >-->
+<!--        <item name="android:textColor">?attr/colorOnSurface</item>-->
+<!--    </style>-->
 
 </resources>
