@@ -19,11 +19,9 @@ package com.olivia.samples.apps.penName.adapters
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.navigation.findNavController
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.olivia.samples.apps.penName.HomeViewPagerFragmentDirections
 import com.olivia.samples.apps.penName.PlantListFragment
 import com.olivia.samples.apps.penName.data.Plant
 import com.olivia.samples.apps.penName.databinding.ListItemPlantBinding
@@ -31,15 +29,16 @@ import com.olivia.samples.apps.penName.databinding.ListItemPlantBinding
 /**
  * Adapter for the [RecyclerView] in [PlantListFragment].
  */
-class PlantAdapter : ListAdapter<Plant, RecyclerView.ViewHolder>(PlantDiffCallback()) {
+class PlantAdapter(private val listener: Listener) : ListAdapter<Plant, RecyclerView.ViewHolder>(PlantDiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return PlantViewHolder(
-            ListItemPlantBinding.inflate(
-                LayoutInflater.from(parent.context),
-                parent,
-                false
-            )
+                ListItemPlantBinding.inflate(
+                        LayoutInflater.from(parent.context),
+                        parent,
+                        false
+                ),
+                listener
         )
     }
 
@@ -49,7 +48,8 @@ class PlantAdapter : ListAdapter<Plant, RecyclerView.ViewHolder>(PlantDiffCallba
     }
 
     class PlantViewHolder(
-        private val binding: ListItemPlantBinding
+            private val binding: ListItemPlantBinding,
+            private val listener: Listener
     ) : RecyclerView.ViewHolder(binding.root) {
         init {
             binding.setClickListener {
@@ -60,14 +60,10 @@ class PlantAdapter : ListAdapter<Plant, RecyclerView.ViewHolder>(PlantDiffCallba
         }
 
         private fun navigateToPlant(
-            plant: Plant,
-            view: View
+                plant: Plant,
+                view: View
         ) {
-            val direction =
-                HomeViewPagerFragmentDirections.actionViewPagerFragmentToPlantDetailFragment(
-                    plant.plantId
-                )
-            view.findNavController().navigate(direction)
+            listener.onPlantClicked(plantId = plant.plantId)
         }
 
         fun bind(item: Plant) {
@@ -77,6 +73,10 @@ class PlantAdapter : ListAdapter<Plant, RecyclerView.ViewHolder>(PlantDiffCallba
             }
         }
     }
+}
+
+interface Listener {
+    fun onPlantClicked(plantId: String)
 }
 
 private class PlantDiffCallback : DiffUtil.ItemCallback<Plant>() {

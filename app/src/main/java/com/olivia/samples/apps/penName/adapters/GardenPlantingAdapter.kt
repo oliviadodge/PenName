@@ -20,17 +20,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
-import androidx.navigation.findNavController
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.olivia.samples.apps.penName.HomeViewPagerFragmentDirections
 import com.olivia.samples.apps.penName.R
 import com.olivia.samples.apps.penName.data.PlantAndGardenPlantings
 import com.olivia.samples.apps.penName.databinding.ListItemGardenPlantingBinding
 import com.olivia.samples.apps.penName.viewmodels.PlantAndGardenPlantingsViewModel
 
-class GardenPlantingAdapter :
+class GardenPlantingAdapter(private val listener: Listener) :
     ListAdapter<PlantAndGardenPlantings, GardenPlantingAdapter.ViewHolder>(
         GardenPlantDiffCallback()
     ) {
@@ -42,7 +40,8 @@ class GardenPlantingAdapter :
                 R.layout.list_item_garden_planting,
                 parent,
                 false
-            )
+            ),
+                listener
         )
     }
 
@@ -51,7 +50,8 @@ class GardenPlantingAdapter :
     }
 
     class ViewHolder(
-        private val binding: ListItemGardenPlantingBinding
+        private val binding: ListItemGardenPlantingBinding,
+        private val listener: Listener,
     ) : RecyclerView.ViewHolder(binding.root) {
         init {
             binding.setClickListener { view ->
@@ -62,9 +62,7 @@ class GardenPlantingAdapter :
         }
 
         private fun navigateToPlant(plantId: String, view: View) {
-            val direction = HomeViewPagerFragmentDirections
-                .actionViewPagerFragmentToPlantDetailFragment(plantId)
-            view.findNavController().navigate(direction)
+            listener.onPlantClicked(plantId)
         }
 
         fun bind(plantings: PlantAndGardenPlantings) {

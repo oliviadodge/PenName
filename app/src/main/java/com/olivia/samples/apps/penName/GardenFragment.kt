@@ -23,9 +23,9 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.observe
-import androidx.viewpager2.widget.ViewPager2
+import androidx.navigation.Navigation
 import com.olivia.samples.apps.penName.adapters.GardenPlantingAdapter
-import com.olivia.samples.apps.penName.adapters.PLANT_LIST_PAGE_INDEX
+import com.olivia.samples.apps.penName.adapters.Listener
 import com.olivia.samples.apps.penName.databinding.FragmentGardenBinding
 import com.olivia.samples.apps.penName.viewmodels.GardenPlantingListViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -43,11 +43,19 @@ class GardenFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentGardenBinding.inflate(inflater, container, false)
-        val adapter = GardenPlantingAdapter()
+        val adapter = GardenPlantingAdapter(
+                object : Listener {
+                    override fun onPlantClicked(plantId: String) {
+                        val direction = BottomNavFragmentDirections
+                                .actionPlantListFragmentToPlantDetail(plantId)
+                        val navController = Navigation.findNavController(activity!!, R.id.nav_host_main)
+                        navController.navigate(direction)
+                    }
+                }
+        )
         binding.gardenList.adapter = adapter
 
         binding.addPlant.setOnClickListener {
-            navigateToPlantListPage()
         }
 
         subscribeUi(adapter, binding)
@@ -59,11 +67,5 @@ class GardenFragment : Fragment() {
             binding.hasPlantings = !result.isNullOrEmpty()
             adapter.submitList(result)
         }
-    }
-
-    // TODO: convert to data binding if applicable
-    private fun navigateToPlantListPage() {
-        requireActivity().findViewById<ViewPager2>(R.id.view_pager).currentItem =
-            PLANT_LIST_PAGE_INDEX
     }
 }

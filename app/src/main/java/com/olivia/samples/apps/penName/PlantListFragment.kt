@@ -26,6 +26,8 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.observe
+import androidx.navigation.Navigation
+import com.olivia.samples.apps.penName.adapters.Listener
 import com.olivia.samples.apps.penName.adapters.PlantAdapter
 import com.olivia.samples.apps.penName.databinding.FragmentPlantListBinding
 import com.olivia.samples.apps.penName.viewmodels.PlantListViewModel
@@ -44,7 +46,15 @@ class PlantListFragment : Fragment() {
         val binding = FragmentPlantListBinding.inflate(inflater, container, false)
         context ?: return binding.root
 
-        val adapter = PlantAdapter()
+        val adapter = PlantAdapter(object : Listener {
+            override fun onPlantClicked(plantId: String) {
+                val direction = BottomNavFragmentDirections
+                        .actionPlantListFragmentToPlantDetail(plantId)
+                val navController = Navigation.findNavController(activity!!, R.id.nav_host_main)
+                navController.navigate(direction)
+            }
+
+        })
         binding.plantList.adapter = adapter
         subscribeUi(adapter)
 

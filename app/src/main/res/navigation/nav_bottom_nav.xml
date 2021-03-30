@@ -18,26 +18,24 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    app:startDestination="@id/view_pager_fragment">
+    app:startDestination="@id/bottom_nav_menu_home">
 
     <fragment
-        android:id="@+id/view_pager_fragment"
-        android:name="com.olivia.samples.apps.penName.HomeViewPagerFragment"
-        tools:layout="@layout/fragment_view_pager">
-
-        <action
-                android:id="@+id/action_view_pager_fragment_to_plant_detail_fragment"
-                app:destination="@id/plant_detail_fragment"
-                app:enterAnim="@anim/slide_in_right"
-                app:exitAnim="@anim/slide_out_left"
-                app:popEnterAnim="@anim/slide_in_left"
-                app:popExitAnim="@anim/slide_out_right" />
-    </fragment>
+        android:id="@+id/bottom_nav_menu_home"
+        android:name="com.olivia.samples.apps.penName.PlantListFragment"
+        android:label="Home"
+        tools:layout="@layout/fragment_plant_list" />
 
     <fragment
-        android:id="@+id/plant_detail_fragment"
+        android:id="@+id/bottom_nav_menu_create"
+        android:name="com.olivia.samples.apps.penName.GardenFragment"
+        android:label="CreatePost"
+        tools:layout="@layout/fragment_garden" />
+
+    <fragment
+        android:id="@+id/bottom_nav_menu_profile"
         android:name="com.olivia.samples.apps.penName.PlantDetailFragment"
-        android:label="@string/plant_details_title"
+        android:label="Profile"
         tools:layout="@layout/fragment_plant_detail">
 
         <action
@@ -49,6 +47,7 @@
             app:popExitAnim="@anim/slide_out_right" />
         <argument
             android:name="plantId"
+            android:defaultValue="solanum-lycopersicum"
             app:argType="string" />
     </fragment>
 
