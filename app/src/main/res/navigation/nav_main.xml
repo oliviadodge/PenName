@@ -44,4 +44,14 @@
             app:argType="string" />
     </fragment>
 
+    <fragment
+        android:id="@+id/gallery_fragment"
+        android:name="com.olivia.samples.apps.penName.GalleryFragment"
+        android:label="@string/plant_details_title"
+        tools:layout="@layout/fragment_gallery">
+        <argument
+            android:name="plantName"
+            app:argType="string" />
+    </fragment>
+
 </navigation>
