@@ -62,7 +62,7 @@ class GardenPlantingAdapter(private val listener: Listener) :
         }
 
         private fun navigateToPlant(plantId: String, view: View) {
-            listener.onPlantClicked(plantId)
+            listener.onProfileClicked(plantId)
         }
 
         fun bind(plantings: PlantAndGardenPlantings) {
@@ -80,13 +80,13 @@ private class GardenPlantDiffCallback : DiffUtil.ItemCallback<PlantAndGardenPlan
         oldItem: PlantAndGardenPlantings,
         newItem: PlantAndGardenPlantings
     ): Boolean {
-        return oldItem.plant.plantId == newItem.plant.plantId
+        return oldItem.post.postId == newItem.post.postId
     }
 
     override fun areContentsTheSame(
         oldItem: PlantAndGardenPlantings,
         newItem: PlantAndGardenPlantings
     ): Boolean {
-        return oldItem.plant == newItem.plant
+        return oldItem.post == newItem.post
     }
 }

@@ -31,7 +31,7 @@
             android:layout_weight="1"
             app:defaultNavHost="true"
             app:navGraph="@navigation/nav_bottom_nav"
-            tools:layout="@layout/fragment_plant_list"/>
+            tools:layout="@layout/fragment_home_feed"/>
 
         <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/bottom_navigation"

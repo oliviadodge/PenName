@@ -23,7 +23,7 @@ import androidx.lifecycle.viewModelScope
 import com.olivia.samples.apps.penName.BuildConfig
 import com.olivia.samples.apps.penName.PlantDetailFragment
 import com.olivia.samples.apps.penName.data.GardenPlantingRepository
-import com.olivia.samples.apps.penName.data.PlantRepository
+import com.olivia.samples.apps.penName.data.FeedRepository
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedFactory
 import dagger.assisted.AssistedInject
@@ -33,13 +33,13 @@ import kotlinx.coroutines.launch
  * The ViewModel used in [PlantDetailFragment].
  */
 class PlantDetailViewModel @AssistedInject constructor(
-    plantRepository: PlantRepository,
-    private val gardenPlantingRepository: GardenPlantingRepository,
-    @Assisted private val plantId: String
+        feedRepository: FeedRepository,
+        private val gardenPlantingRepository: GardenPlantingRepository,
+        @Assisted private val plantId: String
 ) : ViewModel() {
 
     val isPlanted = gardenPlantingRepository.isPlanted(plantId).asLiveData()
-    val plant = plantRepository.getPlant(plantId).asLiveData()
+    val plant = feedRepository.getPlant(plantId).asLiveData()
 
     fun addPlantToGarden() {
         viewModelScope.launch {

@@ -19,7 +19,7 @@ package com.olivia.samples.apps.penName.adapters
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.olivia.samples.apps.penName.GardenFragment
-import com.olivia.samples.apps.penName.PlantListFragment
+import com.olivia.samples.apps.penName.HomeFeedFragment
 
 const val MY_GARDEN_PAGE_INDEX = 0
 const val PLANT_LIST_PAGE_INDEX = 1
@@ -31,7 +31,7 @@ class PenNamePagerAdapter(fragment: Fragment) : FragmentStateAdapter(fragment) {
      */
     private val tabFragmentsCreators: Map<Int, () -> Fragment> = mapOf(
         MY_GARDEN_PAGE_INDEX to { GardenFragment() },
-        PLANT_LIST_PAGE_INDEX to { PlantListFragment() }
+        PLANT_LIST_PAGE_INDEX to { HomeFeedFragment() }
     )
 
     override fun getItemCount() = tabFragmentsCreators.size

@@ -24,7 +24,7 @@
             type="android.view.View.OnClickListener"/>
         <variable
             name="plant"
-            type="com.olivia.samples.apps.penName.data.Plant"/>
+            type="com.olivia.samples.apps.penName.data.Post"/>
     </data>
 
     <com.olivia.samples.apps.penName.views.MaskedCardView

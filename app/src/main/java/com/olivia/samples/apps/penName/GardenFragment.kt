@@ -45,9 +45,9 @@ class GardenFragment : Fragment() {
         binding = FragmentGardenBinding.inflate(inflater, container, false)
         val adapter = GardenPlantingAdapter(
                 object : Listener {
-                    override fun onPlantClicked(plantId: String) {
+                    override fun onProfileClicked(plantId: String) {
                         val direction = BottomNavFragmentDirections
-                                .actionPlantListFragmentToPlantDetail(plantId)
+                                .actionHomeFeedToProfile(plantId)
                         val navController = Navigation.findNavController(activity!!, R.id.nav_host_main)
                         navController.navigate(direction)
                     }

@@ -19,7 +19,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-        <import type="com.olivia.samples.apps.penName.data.Plant"/>
+        <import type="com.olivia.samples.apps.penName.data.Post"/>
         <variable
             name="viewModel"
             type="com.olivia.samples.apps.penName.viewmodels.PlantDetailViewModel" />

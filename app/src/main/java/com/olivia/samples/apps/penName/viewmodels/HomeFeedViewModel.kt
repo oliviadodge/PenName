@@ -19,19 +19,19 @@ package com.olivia.samples.apps.penName.viewmodels
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
-import com.olivia.samples.apps.penName.PlantListFragment
-import com.olivia.samples.apps.penName.data.Plant
-import com.olivia.samples.apps.penName.data.PlantRepository
+import com.olivia.samples.apps.penName.HomeFeedFragment
+import com.olivia.samples.apps.penName.data.Post
+import com.olivia.samples.apps.penName.data.FeedRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
 /**
- * The ViewModel for [PlantListFragment].
+ * The ViewModel for [HomeFeedFragment].
  */
 @HiltViewModel
-class PlantListViewModel @Inject internal constructor(
-        plantRepository: PlantRepository
+class HomeFeedViewModel @Inject internal constructor(
+        feedRepository: FeedRepository
 ) : ViewModel() {
 
-    val plants: LiveData<List<Plant>> = plantRepository.getPlants().asLiveData()
+    val feed: LiveData<List<Post>> = feedRepository.getFeed().asLiveData()
 }

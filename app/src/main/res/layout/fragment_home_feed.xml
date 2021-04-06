@@ -69,7 +69,7 @@
             android:layout_height="match_parent">
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/plant_list"
+                android:id="@+id/feed_recycler_view"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:clipToPadding="false"
@@ -78,7 +78,7 @@
                 android:paddingEnd="@dimen/card_side_margin"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 tools:context="com.olivia.samples.apps.penName.GardenActivity"
-                tools:listitem="@layout/list_item_plant" />
+                tools:listitem="@layout/list_item_post" />
 
         </FrameLayout>
     </androidx.coordinatorlayout.widget.CoordinatorLayout>

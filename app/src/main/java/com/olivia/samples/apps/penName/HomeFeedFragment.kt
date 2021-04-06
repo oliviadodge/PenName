@@ -22,41 +22,41 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.Navigation
 import com.olivia.samples.apps.penName.adapters.Listener
-import com.olivia.samples.apps.penName.adapters.PlantAdapter
-import com.olivia.samples.apps.penName.databinding.FragmentPlantListBinding
-import com.olivia.samples.apps.penName.viewmodels.PlantListViewModel
+import com.olivia.samples.apps.penName.adapters.FeedAdapter
+import com.olivia.samples.apps.penName.databinding.FragmentHomeFeedBinding
+import com.olivia.samples.apps.penName.viewmodels.HomeFeedViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class PlantListFragment : Fragment() {
+class HomeFeedFragment : Fragment() {
 
-    private val viewModel: PlantListViewModel by viewModels()
+    private val viewModel: HomeFeedViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val binding = FragmentPlantListBinding.inflate(inflater, container, false)
+        val binding = FragmentHomeFeedBinding.inflate(inflater, container, false)
         context ?: return binding.root
 
-        val adapter = PlantAdapter(object : Listener {
-            override fun onPlantClicked(plantId: String) {
-                val direction = BottomNavFragmentDirections.actionPlantListFragmentToPlantDetail(plantId)
+        val adapter = FeedAdapter(object : Listener {
+            override fun onProfileClicked(profileId: String) {
+                val direction = BottomNavFragmentDirections.actionHomeFeedToProfile(profileId)
                 val navController = Navigation.findNavController(activity!!, R.id.nav_host_main)
                 navController.navigate(direction)
             }
 
         })
-        binding.plantList.adapter = adapter
+        binding.feedRecyclerView.adapter = adapter
         subscribeUi(adapter)
 
         return binding.root
     }
 
-    private fun subscribeUi(adapter: PlantAdapter) {
-        viewModel.plants.observe(viewLifecycleOwner) { plants ->
-            adapter.submitList(plants)
+    private fun subscribeUi(adapter: FeedAdapter) {
+        viewModel.feed.observe(viewLifecycleOwner) { feed ->
+            adapter.submitList(feed)
         }
     }
 }

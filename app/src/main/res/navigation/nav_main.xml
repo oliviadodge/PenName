@@ -26,7 +26,7 @@
         android:label="BottomNavFragment"
         tools:layout="@layout/fragment_bottom_nav" >
         <action
-            android:id="@+id/action_plant_list_fragment_to_plant_detail"
+            android:id="@+id/action_home_feed_to_profile"
             app:destination="@id/plant_profile"
             app:enterAnim="@anim/slide_in_right"
             app:exitAnim="@anim/slide_out_left"

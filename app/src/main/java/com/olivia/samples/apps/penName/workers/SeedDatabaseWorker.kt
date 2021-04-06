@@ -24,7 +24,7 @@ import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import com.google.gson.stream.JsonReader
 import com.olivia.samples.apps.penName.data.AppDatabase
-import com.olivia.samples.apps.penName.data.Plant
+import com.olivia.samples.apps.penName.data.Post
 import com.olivia.samples.apps.penName.utilities.PLANT_DATA_FILENAME
 import kotlinx.coroutines.coroutineScope
 
@@ -36,11 +36,11 @@ class SeedDatabaseWorker(
         try {
             applicationContext.assets.open(PLANT_DATA_FILENAME).use { inputStream ->
                 JsonReader(inputStream.reader()).use { jsonReader ->
-                    val plantType = object : TypeToken<List<Plant>>() {}.type
-                    val plantList: List<Plant> = Gson().fromJson(jsonReader, plantType)
+                    val plantType = object : TypeToken<List<Post>>() {}.type
+                    val postList: List<Post> = Gson().fromJson(jsonReader, plantType)
 
                     val database = AppDatabase.getInstance(applicationContext)
-                    database.plantDao().insertAll(plantList)
+                    database.plantDao().insertAll(postList)
 
                     Result.success()
                 }

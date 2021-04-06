@@ -46,6 +46,6 @@ class GardenActivityTest {
         onView(withId(R.id.add_plant)).perform(click())
 
         // Then the ViewPager should change to the Plant List page
-        onView(withId(R.id.plant_list)).check(matches(isDisplayed()))
+        onView(withId(R.id.feed_recycler_view)).check(matches(isDisplayed()))
     }
 }

@@ -24,7 +24,7 @@ import androidx.room.PrimaryKey
 import java.util.Calendar
 
 /**
- * [GardenPlanting] represents when a user adds a [Plant] to their garden, with useful metadata.
+ * [GardenPlanting] represents when a user adds a [Post] to their garden, with useful metadata.
  * Properties such as [lastWateringDate] are used for notifications (such as when to water the
  * plant).
  *
@@ -34,21 +34,21 @@ import java.util.Calendar
 @Entity(
     tableName = "garden_plantings",
     foreignKeys = [
-        ForeignKey(entity = Plant::class, parentColumns = ["id"], childColumns = ["plant_id"])
+        ForeignKey(entity = Post::class, parentColumns = ["id"], childColumns = ["post_id"])
     ],
-    indices = [Index("plant_id")]
+    indices = [Index("post_id")]
 )
 data class GardenPlanting(
-    @ColumnInfo(name = "plant_id") val plantId: String,
+        @ColumnInfo(name = "post_id") val postId: String,
 
-    /**
-     * Indicates when the [Plant] was planted. Used for showing notification when it's time
+        /**
+     * Indicates when the [Post] was planted. Used for showing notification when it's time
      * to harvest the plant.
      */
     @ColumnInfo(name = "plant_date") val plantDate: Calendar = Calendar.getInstance(),
 
-    /**
-     * Indicates when the [Plant] was last watered. Used for showing notification when it's
+        /**
+     * Indicates when the [Post] was last watered. Used for showing notification when it's
      * time to water the plant.
      */
     @ColumnInfo(name = "last_watering_date")

@@ -31,15 +31,15 @@ interface GardenPlantingDao {
     @Query("SELECT * FROM garden_plantings")
     fun getGardenPlantings(): Flow<List<GardenPlanting>>
 
-    @Query("SELECT EXISTS(SELECT 1 FROM garden_plantings WHERE plant_id = :plantId LIMIT 1)")
+    @Query("SELECT EXISTS(SELECT 1 FROM garden_plantings WHERE post_id = :plantId LIMIT 1)")
     fun isPlanted(plantId: String): Flow<Boolean>
 
     /**
-     * This query will tell Room to query both the [Plant] and [GardenPlanting] tables and handle
+     * This query will tell Room to query both the [Post] and [GardenPlanting] tables and handle
      * the object mapping.
      */
     @Transaction
-    @Query("SELECT * FROM plants WHERE id IN (SELECT DISTINCT(plant_id) FROM garden_plantings)")
+    @Query("SELECT * FROM posts WHERE id IN (SELECT DISTINCT(post_id) FROM garden_plantings)")
     fun getPlantedGardens(): Flow<List<PlantAndGardenPlantings>>
 
     @Insert

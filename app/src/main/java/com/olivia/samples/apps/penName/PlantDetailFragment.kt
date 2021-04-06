@@ -32,7 +32,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.snackbar.Snackbar
-import com.olivia.samples.apps.penName.data.Plant
+import com.olivia.samples.apps.penName.data.Post
 import com.olivia.samples.apps.penName.databinding.FragmentPlantDetailBinding
 import com.olivia.samples.apps.penName.viewmodels.PlantDetailViewModel
 import com.olivia.samples.apps.penName.viewmodels.PlantDetailViewModelFactory
@@ -161,6 +161,6 @@ class PlantDetailFragment : Fragment() {
     }
 
     fun interface Callback {
-        fun add(plant: Plant?)
+        fun add(post: Post?)
     }
 }

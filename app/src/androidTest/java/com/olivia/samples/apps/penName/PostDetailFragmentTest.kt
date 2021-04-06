@@ -41,7 +41,7 @@ import org.junit.Test
 import org.junit.runner.RunWith
 
 @RunWith(AndroidJUnit4::class)
-class PlantDetailFragmentTest {
+class PostDetailFragmentTest {
 
     @Rule
     @JvmField
@@ -51,7 +51,7 @@ class PlantDetailFragmentTest {
     fun jumpToPlantDetailFragment() {
         activityTestRule.activity.apply {
             runOnUiThread {
-                val bundle = Bundle().apply { putString("plantId", testPlant.plantId) }
+                val bundle = Bundle().apply { putString("plantId", testPlant.postId) }
                 findNavController(R.id.nav_host_main).navigate(R.id.bottom_nav_menu_profile, bundle)
             }
         }

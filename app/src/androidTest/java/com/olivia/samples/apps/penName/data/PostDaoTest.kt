@@ -31,12 +31,12 @@ import org.junit.Test
 import org.junit.runner.RunWith
 
 @RunWith(AndroidJUnit4::class)
-class PlantDaoTest {
+class PostDaoTest {
     private lateinit var database: AppDatabase
     private lateinit var plantDao: PlantDao
-    private val plantA = Plant("1", "A", "", 1, 1, "")
-    private val plantB = Plant("2", "B", "", 1, 1, "")
-    private val plantC = Plant("3", "C", "", 2, 2, "")
+    private val plantA = Post("1", "A", "", 1, 1, "")
+    private val plantB = Post("2", "B", "", 1, 1, "")
+    private val plantC = Post("3", "C", "", 2, 2, "")
 
     @get:Rule
     var instantTaskExecutorRule = InstantTaskExecutorRule()
@@ -76,6 +76,6 @@ class PlantDaoTest {
     }
 
     @Test fun testGetPlant() = runBlocking {
-        assertThat(plantDao.getPlant(plantA.plantId).first(), equalTo(plantA))
+        assertThat(plantDao.getPlant(plantA.postId).first(), equalTo(plantA))
     }
 }

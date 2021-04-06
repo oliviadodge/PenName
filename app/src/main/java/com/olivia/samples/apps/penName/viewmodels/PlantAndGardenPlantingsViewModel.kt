@@ -21,7 +21,7 @@ import java.text.SimpleDateFormat
 import java.util.Locale
 
 class PlantAndGardenPlantingsViewModel(plantings: PlantAndGardenPlantings) {
-    private val plant = checkNotNull(plantings.plant)
+    private val plant = checkNotNull(plantings.post)
     private val gardenPlanting = plantings.gardenPlantings[0]
 
     val waterDateString: String = dateFormat.format(gardenPlanting.lastWateringDate.time)
@@ -33,7 +33,7 @@ class PlantAndGardenPlantingsViewModel(plantings: PlantAndGardenPlantings) {
         get() = plant.name
     val plantDateString: String = dateFormat.format(gardenPlanting.plantDate.time)
     val plantId
-        get() = plant.plantId
+        get() = plant.postId
 
     companion object {
         private val dateFormat = SimpleDateFormat("MMM d, yyyy", Locale.US)

@@ -57,7 +57,7 @@ class GardenPlantingDaoTest {
 
     @Test fun testGetGardenPlantings() = runBlocking {
         val gardenPlanting2 = GardenPlanting(
-            testPlants[1].plantId,
+            testPlants[1].postId,
             testCalendar,
             testCalendar
         ).also { it.gardenPlantingId = 2 }
@@ -67,7 +67,7 @@ class GardenPlantingDaoTest {
 
     @Test fun testDeleteGardenPlanting() = runBlocking {
         val gardenPlanting2 = GardenPlanting(
-            testPlants[1].plantId,
+            testPlants[1].postId,
             testCalendar,
             testCalendar
         ).also { it.gardenPlantingId = 2 }
@@ -78,11 +78,11 @@ class GardenPlantingDaoTest {
     }
 
     @Test fun testGetGardenPlantingForPlant() = runBlocking {
-        assertTrue(gardenPlantingDao.isPlanted(testPlant.plantId).first())
+        assertTrue(gardenPlantingDao.isPlanted(testPlant.postId).first())
     }
 
     @Test fun testGetGardenPlantingForPlant_notFound() = runBlocking {
-        assertFalse(gardenPlantingDao.isPlanted(testPlants[2].plantId).first())
+        assertFalse(gardenPlantingDao.isPlanted(testPlants[2].postId).first())
     }
 
     @Test fun testGetPlantAndGardenPlantings() = runBlocking {
@@ -92,7 +92,7 @@ class GardenPlantingDaoTest {
         /**
          * Only the [testPlant] has been planted, and thus has an associated [GardenPlanting]
          */
-        assertThat(plantAndGardenPlantings[0].plant, equalTo(testPlant))
+        assertThat(plantAndGardenPlantings[0].post, equalTo(testPlant))
         assertThat(plantAndGardenPlantings[0].gardenPlantings.size, equalTo(1))
         assertThat(plantAndGardenPlantings[0].gardenPlantings[0], equalTo(testGardenPlanting))
     }

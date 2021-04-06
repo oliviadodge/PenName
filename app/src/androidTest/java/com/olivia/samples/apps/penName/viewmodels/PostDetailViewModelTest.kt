@@ -21,7 +21,7 @@ import androidx.room.Room
 import androidx.test.platform.app.InstrumentationRegistry
 import com.olivia.samples.apps.penName.data.AppDatabase
 import com.olivia.samples.apps.penName.data.GardenPlantingRepository
-import com.olivia.samples.apps.penName.data.PlantRepository
+import com.olivia.samples.apps.penName.data.FeedRepository
 import com.olivia.samples.apps.penName.utilities.getValue
 import com.olivia.samples.apps.penName.utilities.testPlant
 import dagger.hilt.android.testing.HiltAndroidRule
@@ -36,7 +36,7 @@ import javax.inject.Inject
 import kotlin.jvm.Throws
 
 @HiltAndroidTest
-class PlantDetailViewModelTest {
+class PostDetailViewModelTest {
 
     private lateinit var appDatabase: AppDatabase
     private lateinit var viewModel: PlantDetailViewModel
@@ -49,7 +49,7 @@ class PlantDetailViewModelTest {
             .around(instantTaskExecutorRule)
 
     @Inject
-    lateinit var plantRepository: PlantRepository
+    lateinit var feedRepository: FeedRepository
 
     @Inject
     lateinit var gardenPlantRepository: GardenPlantingRepository
@@ -61,7 +61,7 @@ class PlantDetailViewModelTest {
         val context = InstrumentationRegistry.getInstrumentation().targetContext
         appDatabase = Room.inMemoryDatabaseBuilder(context, AppDatabase::class.java).build()
 
-        viewModel = PlantDetailViewModel(plantRepository, gardenPlantRepository, testPlant.plantId)
+        viewModel = PlantDetailViewModel(feedRepository, gardenPlantRepository, testPlant.postId)
     }
 
     @After

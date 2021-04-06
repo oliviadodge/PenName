@@ -27,15 +27,15 @@ import kotlinx.coroutines.flow.Flow
  */
 @Dao
 interface PlantDao {
-    @Query("SELECT * FROM plants ORDER BY name")
-    fun getPlants(): Flow<List<Plant>>
+    @Query("SELECT * FROM posts ORDER BY name")
+    fun getPlants(): Flow<List<Post>>
 
-    @Query("SELECT * FROM plants WHERE growZoneNumber = :growZoneNumber ORDER BY name")
-    fun getPlantsWithGrowZoneNumber(growZoneNumber: Int): Flow<List<Plant>>
+    @Query("SELECT * FROM posts WHERE growZoneNumber = :growZoneNumber ORDER BY name")
+    fun getPlantsWithGrowZoneNumber(growZoneNumber: Int): Flow<List<Post>>
 
-    @Query("SELECT * FROM plants WHERE id = :plantId")
-    fun getPlant(plantId: String): Flow<Plant>
+    @Query("SELECT * FROM posts WHERE id = :postId")
+    fun getPlant(postId: String): Flow<Post>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertAll(plants: List<Plant>)
+    suspend fun insertAll(posts: List<Post>)
 }
