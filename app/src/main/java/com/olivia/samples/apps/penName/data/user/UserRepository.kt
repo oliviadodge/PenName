@@ -14,27 +14,22 @@
  * limitations under the License.
  */
 
-package com.olivia.samples.apps.penName.data
+package com.olivia.samples.apps.penName.data.user
 
 import javax.inject.Inject
 import javax.inject.Singleton
 
+/**
+ * Repository module for handling data operations.
+ *
+ * Collecting from the Flows in [UserDao] is main-safe.  Room supports Coroutines and moves the
+ * query execution off of the main thread.
+ */
 @Singleton
-class GardenPlantingRepository @Inject constructor(
-    private val gardenPlantingDao: GardenPlantingDao
-) {
+class UserRepository @Inject constructor(private val userDao: UserDao) {
 
-    suspend fun createGardenPlanting(plantId: String) {
-        val gardenPlanting = GardenPlanting(plantId)
-        gardenPlantingDao.insertGardenPlanting(gardenPlanting)
-    }
+    fun getUsers() = userDao.getUsers()
 
-    suspend fun removeGardenPlanting(gardenPlanting: GardenPlanting) {
-        gardenPlantingDao.deleteGardenPlanting(gardenPlanting)
-    }
+    fun getUser(userId: String) = userDao.getUser(userId)
 
-    fun isPlanted(plantId: String) =
-        gardenPlantingDao.isPlanted(plantId)
-
-    fun getPlantedGardens() = gardenPlantingDao.getPlantedGardens()
 }

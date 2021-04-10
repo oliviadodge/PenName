@@ -20,4 +20,5 @@ package com.olivia.samples.apps.penName.utilities
  * Constants used throughout the app.
  */
 const val DATABASE_NAME = "penName-db"
-const val PLANT_DATA_FILENAME = "plants.json"
+const val USERS_DATA_FILENAME = "users.json"
+const val POSTS_DATA_FILENAME = "posts.json"

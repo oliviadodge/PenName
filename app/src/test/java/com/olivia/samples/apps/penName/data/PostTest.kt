@@ -16,52 +16,31 @@
 
 package com.olivia.samples.apps.penName.data
 
+import com.olivia.samples.apps.penName.data.post.Post
+import org.hamcrest.CoreMatchers.equalTo
 import org.junit.Assert.assertEquals
-import org.junit.Assert.assertFalse
-import org.junit.Assert.assertTrue
-import org.junit.Before
+import org.junit.Assert.assertThat
 import org.junit.Test
 import java.util.Calendar
-import java.util.Calendar.DAY_OF_YEAR
+import java.util.Calendar.DAY_OF_MONTH
+import java.util.Calendar.MONTH
+import java.util.Calendar.YEAR
 
 class PostTest {
 
-    private lateinit var post: Post
-
-    @Before fun setUp() {
-        post = Post("1", "Tomato", "A red vegetable", 1, 2, "")
+    @Test
+    fun testDefaultValues() {
+        val gardenPlanting = Post("1")
+        val cal = Calendar.getInstance()
+        assertYMD(cal, gardenPlanting.postDate)
+        assertYMD(cal, gardenPlanting.lastWateringDate)
+        assertEquals(0L, gardenPlanting.gardenPlantingId)
     }
 
-    @Test fun test_default_values() {
-        val defaultPlant = Post("2", "Apple", "Description", 1)
-        assertEquals(7, defaultPlant.wateringInterval)
-        assertEquals("", defaultPlant.imageUrl)
-    }
-
-    @Test fun test_shouldBeWatered() {
-        Calendar.getInstance().let { now ->
-            // Generate lastWateringDate from being as copy of now.
-            val lastWateringDate = Calendar.getInstance()
-
-            // Test for lastWateringDate is today.
-            lastWateringDate.time = now.time
-            assertFalse(post.shouldBeWatered(now, lastWateringDate.apply { add(DAY_OF_YEAR, -0) }))
-
-            // Test for lastWateringDate is yesterday.
-            lastWateringDate.time = now.time
-            assertFalse(post.shouldBeWatered(now, lastWateringDate.apply { add(DAY_OF_YEAR, -1) }))
-
-            // Test for lastWateringDate is the day before yesterday.
-            lastWateringDate.time = now.time
-            assertFalse(post.shouldBeWatered(now, lastWateringDate.apply { add(DAY_OF_YEAR, -2) }))
-
-            // Test for lastWateringDate is some days ago, three days ago, four days ago etc.
-            lastWateringDate.time = now.time
-            assertTrue(post.shouldBeWatered(now, lastWateringDate.apply { add(DAY_OF_YEAR, -3) }))
-        }
-    }
-
-    @Test fun test_toString() {
-        assertEquals("Tomato", post.toString())
+    // Only Year/Month/Day precision is needed for comparing GardenPlanting Calendar entries
+    private fun assertYMD(expectedCal: Calendar, actualCal: Calendar) {
+        assertThat(actualCal.get(YEAR), equalTo(expectedCal.get(YEAR)))
+        assertThat(actualCal.get(MONTH), equalTo(expectedCal.get(MONTH)))
+        assertThat(actualCal.get(DAY_OF_MONTH), equalTo(expectedCal.get(DAY_OF_MONTH)))
     }
 }

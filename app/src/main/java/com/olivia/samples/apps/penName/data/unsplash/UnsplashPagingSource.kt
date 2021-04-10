@@ -14,10 +14,11 @@
  * limitations under the License.
  */
 
-package com.olivia.samples.apps.penName.data
+package com.olivia.samples.apps.penName.data.unsplash
 
 import androidx.paging.PagingSource
 import com.olivia.samples.apps.penName.api.UnsplashService
+import com.olivia.samples.apps.penName.data.unsplash.UnsplashPhoto
 
 private const val UNSPLASH_STARTING_PAGE_INDEX = 1
 

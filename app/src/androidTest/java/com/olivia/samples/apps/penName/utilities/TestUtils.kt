@@ -21,20 +21,20 @@ import android.content.Intent
 import androidx.appcompat.widget.Toolbar
 import androidx.test.espresso.intent.matcher.IntentMatchers.hasAction
 import androidx.test.espresso.intent.matcher.IntentMatchers.hasExtra
-import com.olivia.samples.apps.penName.data.GardenPlanting
-import com.olivia.samples.apps.penName.data.Post
+import com.olivia.samples.apps.penName.data.post.Post
+import com.olivia.samples.apps.penName.data.user.User
 import org.hamcrest.Matcher
 import org.hamcrest.Matchers.`is`
 import org.hamcrest.Matchers.allOf
 import java.util.Calendar
 
 /**
- * [Post] objects used for tests.
+ * [User] objects used for tests.
  */
 val testPlants = arrayListOf(
-    Post("1", "Apple", "A red fruit", 1),
-    Post("2", "B", "Description B", 1),
-    Post("3", "C", "Description C", 2)
+        User("1", "Apple", "A red fruit"),
+        User("2", "B", "Description B"),
+        User("3", "C", "Description C")
 )
 val testPlant = testPlants[0]
 
@@ -48,9 +48,9 @@ val testCalendar: Calendar = Calendar.getInstance().apply {
 }
 
 /**
- * [GardenPlanting] object used for tests.
+ * [Post] object used for tests.
  */
-val testGardenPlanting = GardenPlanting(testPlant.postId, testCalendar, testCalendar)
+val testGardenPlanting = Post(testPlant.user_id, testCalendar, testCalendar)
 
 /**
  * Returns the content description for the navigation button view in the toolbar.

@@ -24,8 +24,10 @@ import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import com.google.gson.stream.JsonReader
 import com.olivia.samples.apps.penName.data.AppDatabase
-import com.olivia.samples.apps.penName.data.Post
-import com.olivia.samples.apps.penName.utilities.PLANT_DATA_FILENAME
+import com.olivia.samples.apps.penName.data.post.Post
+import com.olivia.samples.apps.penName.data.user.User
+import com.olivia.samples.apps.penName.utilities.POSTS_DATA_FILENAME
+import com.olivia.samples.apps.penName.utilities.USERS_DATA_FILENAME
 import kotlinx.coroutines.coroutineScope
 
 class SeedDatabaseWorker(
@@ -34,20 +36,42 @@ class SeedDatabaseWorker(
 ) : CoroutineWorker(context, workerParams) {
     override suspend fun doWork(): Result = coroutineScope {
         try {
-            applicationContext.assets.open(PLANT_DATA_FILENAME).use { inputStream ->
-                JsonReader(inputStream.reader()).use { jsonReader ->
-                    val plantType = object : TypeToken<List<Post>>() {}.type
-                    val postList: List<Post> = Gson().fromJson(jsonReader, plantType)
+            seedDatabaseTables()
 
-                    val database = AppDatabase.getInstance(applicationContext)
-                    database.plantDao().insertAll(postList)
-
-                    Result.success()
-                }
-            }
         } catch (ex: Exception) {
             Log.e(TAG, "Error seeding database", ex)
             Result.failure()
+        }
+    }
+
+    private suspend fun seedDatabaseTables(): Result {
+        seedUsersTable()
+        seedPostsTable()
+        return Result.success()
+    }
+
+    private suspend fun seedUsersTable() {
+        applicationContext.assets.open(USERS_DATA_FILENAME).use { inputStream ->
+            JsonReader(inputStream.reader()).use { jsonReader ->
+                val type = object : TypeToken<List<User>>() {}.type
+                val userList: List<User> = Gson().fromJson(jsonReader, type)
+
+                val database = AppDatabase.getInstance(applicationContext)
+                database.userDao().insertAll(userList)
+            }
+        }
+    }
+
+    private suspend fun seedPostsTable() {
+        applicationContext.assets.open(POSTS_DATA_FILENAME).use { inputStream ->
+            JsonReader(inputStream.reader()).use { jsonReader ->
+                val type = object : TypeToken<List<Post>>() {}.type
+                val posts: List<Post> = Gson().fromJson(jsonReader, type)
+
+                val database = AppDatabase.getInstance(applicationContext)
+                val rowIds = database.postDao().insertAll(posts)
+                print(rowIds.toString())
+            }
         }
     }
 

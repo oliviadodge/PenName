@@ -23,17 +23,17 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.olivia.samples.apps.penName.HomeFeedFragment
-import com.olivia.samples.apps.penName.data.Post
-import com.olivia.samples.apps.penName.databinding.ListItemPostBinding
+import com.olivia.samples.apps.penName.data.user.User
+import com.olivia.samples.apps.penName.databinding.ListItemUserBinding
 
 /**
  * Adapter for the [RecyclerView] in [HomeFeedFragment].
  */
-class FeedAdapter(private val listener: Listener) : ListAdapter<Post, RecyclerView.ViewHolder>(PlantDiffCallback()) {
+class UserAdapter(private val listener: Listener) : ListAdapter<User, RecyclerView.ViewHolder>(UserDiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return PlantViewHolder(
-                ListItemPostBinding.inflate(
+                ListItemUserBinding.inflate(
                         LayoutInflater.from(parent.context),
                         parent,
                         false
@@ -48,27 +48,27 @@ class FeedAdapter(private val listener: Listener) : ListAdapter<Post, RecyclerVi
     }
 
     class PlantViewHolder(
-            private val binding: ListItemPostBinding,
+            private val binding: ListItemUserBinding,
             private val listener: Listener
     ) : RecyclerView.ViewHolder(binding.root) {
         init {
             binding.setClickListener {
-                binding.plant?.let { plant ->
+                binding.user?.let { plant ->
                     navigateToPlant(plant, it)
                 }
             }
         }
 
         private fun navigateToPlant(
-                post: Post,
+                user: User,
                 view: View
         ) {
-            listener.onProfileClicked(plantId = post.postId)
+            listener.onPostClicked(postId = user.userId)
         }
 
-        fun bind(item: Post) {
+        fun bind(item: User) {
             binding.apply {
-                plant = item
+                user = item
                 executePendingBindings()
             }
         }
@@ -76,16 +76,16 @@ class FeedAdapter(private val listener: Listener) : ListAdapter<Post, RecyclerVi
 }
 
 interface Listener {
-    fun onProfileClicked(plantId: String)
+    fun onPostClicked(postId: String)
 }
 
-private class PlantDiffCallback : DiffUtil.ItemCallback<Post>() {
+private class UserDiffCallback : DiffUtil.ItemCallback<User>() {
 
-    override fun areItemsTheSame(oldItem: Post, newItem: Post): Boolean {
-        return oldItem.postId == newItem.postId
+    override fun areItemsTheSame(oldItem: User, newItem: User): Boolean {
+        return oldItem.userId == newItem.userId
     }
 
-    override fun areContentsTheSame(oldItem: Post, newItem: Post): Boolean {
+    override fun areContentsTheSame(oldItem: User, newItem: User): Boolean {
         return oldItem == newItem
     }
 }

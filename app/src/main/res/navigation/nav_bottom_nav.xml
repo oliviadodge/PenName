@@ -28,15 +28,15 @@
 
     <fragment
         android:id="@+id/bottom_nav_menu_create"
-        android:name="com.olivia.samples.apps.penName.GardenFragment"
+        android:name="com.olivia.samples.apps.penName.HomeFeedFragment"
         android:label="CreatePost"
-        tools:layout="@layout/fragment_garden" />
+        tools:layout="@layout/fragment_home_feed" />
 
     <fragment
         android:id="@+id/bottom_nav_menu_profile"
-        android:name="com.olivia.samples.apps.penName.PlantDetailFragment"
+        android:name="com.olivia.samples.apps.penName.UserProfileFragment"
         android:label="Profile"
-        tools:layout="@layout/fragment_plant_detail">
+        tools:layout="@layout/fragment_user_profile">
 
         <action
             android:id="@+id/action_plant_detail_fragment_to_gallery_fragment"

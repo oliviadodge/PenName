@@ -1,5 +1,5 @@
 /*
- * Copyright 2020 Google LLC
+ * Copyright 2018 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,17 +16,19 @@
 
 package com.olivia.samples.apps.penName.data
 
-import com.google.gson.annotations.SerializedName
+import androidx.room.Embedded
+import androidx.room.Relation
+import com.olivia.samples.apps.penName.data.post.Post
+import com.olivia.samples.apps.penName.data.user.User
 
 /**
- * Data class that represents a photo from Unsplash.
- *
- * Not all of the fields returned from the API are represented here; only the ones used in this
- * project are listed below. For a full list of fields, consult the API documentation
- * [here](https://unsplash.com/documentation#get-a-photo).
+ * This class captures the relationship between a [User] and a user's [Post], which is
+ * used by Room to fetch the related entities.
  */
-data class UnsplashPhoto(
-    @field:SerializedName("id") val id: String,
-    @field:SerializedName("urls") val urls: UnsplashPhotoUrls,
-    @field:SerializedName("user") val user: UnsplashUser
+data class UserAndPosts(
+        @Embedded(prefix = "parent_")
+    val user: User,
+
+        @Relation(parentColumn = "userId", entityColumn = "userId")
+    val posts: List<Post> = emptyList()
 )

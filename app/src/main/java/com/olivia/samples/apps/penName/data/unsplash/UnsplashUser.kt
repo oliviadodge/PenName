@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.olivia.samples.apps.penName.data
+package com.olivia.samples.apps.penName.data.unsplash
 
 import com.google.gson.annotations.SerializedName
 

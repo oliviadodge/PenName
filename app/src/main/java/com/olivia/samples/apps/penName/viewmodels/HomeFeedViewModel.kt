@@ -20,8 +20,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
 import com.olivia.samples.apps.penName.HomeFeedFragment
-import com.olivia.samples.apps.penName.data.Post
-import com.olivia.samples.apps.penName.data.FeedRepository
+import com.olivia.samples.apps.penName.data.post.Post
+import com.olivia.samples.apps.penName.data.post.PostRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
@@ -30,8 +30,8 @@ import javax.inject.Inject
  */
 @HiltViewModel
 class HomeFeedViewModel @Inject internal constructor(
-        feedRepository: FeedRepository
+        repository: PostRepository
 ) : ViewModel() {
 
-    val feed: LiveData<List<Post>> = feedRepository.getFeed().asLiveData()
+    val feed: LiveData<List<Post>> = repository.getPosts().asLiveData()
 }

@@ -16,34 +16,34 @@
 
 package com.olivia.samples.apps.penName.viewmodels
 
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.asLiveData
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
 import com.olivia.samples.apps.penName.BuildConfig
-import com.olivia.samples.apps.penName.PlantDetailFragment
-import com.olivia.samples.apps.penName.data.GardenPlantingRepository
-import com.olivia.samples.apps.penName.data.FeedRepository
+import com.olivia.samples.apps.penName.UserProfileFragment
+import com.olivia.samples.apps.penName.data.UserAndPosts
+import com.olivia.samples.apps.penName.data.post.PostRepository
+import com.olivia.samples.apps.penName.data.user.UserRepository
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedFactory
 import dagger.assisted.AssistedInject
 import kotlinx.coroutines.launch
 
 /**
- * The ViewModel used in [PlantDetailFragment].
+ * The ViewModel used in [UserProfileFragment].
  */
-class PlantDetailViewModel @AssistedInject constructor(
-        feedRepository: FeedRepository,
-        private val gardenPlantingRepository: GardenPlantingRepository,
-        @Assisted private val plantId: String
+class UserProfileViewModel @AssistedInject constructor(
+        userRepository: UserRepository,
+        private val postRepository: PostRepository,
+        @Assisted private val userId: String
 ) : ViewModel() {
 
-    val isPlanted = gardenPlantingRepository.isPlanted(plantId).asLiveData()
-    val plant = feedRepository.getPlant(plantId).asLiveData()
+    val user = userRepository.getUser(userId).asLiveData()
+//TODO fixme
+//    val userAndPosts: LiveData<UserAndPosts> =
+//            postRepository.getPostsFromUser(userId).asLiveData()
 
-    fun addPlantToGarden() {
+    fun createPost() {
         viewModelScope.launch {
-            gardenPlantingRepository.createGardenPlanting(plantId)
+            postRepository.createPost(userId)
         }
     }
 
@@ -51,18 +51,18 @@ class PlantDetailViewModel @AssistedInject constructor(
 
     companion object {
         fun provideFactory(
-            assistedFactory: PlantDetailViewModelFactory,
-            plantId: String
+                assistedFactory: UserProfileViewModelFactory,
+                userId: String
         ): ViewModelProvider.Factory = object : ViewModelProvider.Factory {
             @Suppress("UNCHECKED_CAST")
             override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-                return assistedFactory.create(plantId) as T
+                return assistedFactory.create(userId) as T
             }
         }
     }
 }
 
 @AssistedFactory
-interface PlantDetailViewModelFactory {
-    fun create(plantId: String): PlantDetailViewModel
+interface UserProfileViewModelFactory {
+    fun create(userId: String): UserProfileViewModel
 }

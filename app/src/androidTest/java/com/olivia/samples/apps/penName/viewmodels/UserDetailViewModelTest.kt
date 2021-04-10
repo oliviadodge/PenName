@@ -20,8 +20,8 @@ import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.room.Room
 import androidx.test.platform.app.InstrumentationRegistry
 import com.olivia.samples.apps.penName.data.AppDatabase
-import com.olivia.samples.apps.penName.data.GardenPlantingRepository
-import com.olivia.samples.apps.penName.data.FeedRepository
+import com.olivia.samples.apps.penName.data.post.PostRepository
+import com.olivia.samples.apps.penName.data.user.UserRepository
 import com.olivia.samples.apps.penName.utilities.getValue
 import com.olivia.samples.apps.penName.utilities.testPlant
 import dagger.hilt.android.testing.HiltAndroidRule
@@ -36,10 +36,10 @@ import javax.inject.Inject
 import kotlin.jvm.Throws
 
 @HiltAndroidTest
-class PostDetailViewModelTest {
+class UserDetailViewModelTest {
 
     private lateinit var appDatabase: AppDatabase
-    private lateinit var viewModel: PlantDetailViewModel
+    private lateinit var viewModel: UserProfileViewModel
     private val hiltRule = HiltAndroidRule(this)
     private val instantTaskExecutorRule = InstantTaskExecutorRule()
 
@@ -49,10 +49,10 @@ class PostDetailViewModelTest {
             .around(instantTaskExecutorRule)
 
     @Inject
-    lateinit var feedRepository: FeedRepository
+    lateinit var userRepository: UserRepository
 
     @Inject
-    lateinit var gardenPlantRepository: GardenPlantingRepository
+    lateinit var gardenPlantRepository: PostRepository
 
     @Before
     fun setUp() {
@@ -61,7 +61,7 @@ class PostDetailViewModelTest {
         val context = InstrumentationRegistry.getInstrumentation().targetContext
         appDatabase = Room.inMemoryDatabaseBuilder(context, AppDatabase::class.java).build()
 
-        viewModel = PlantDetailViewModel(feedRepository, gardenPlantRepository, testPlant.postId)
+        viewModel = UserProfileViewModel(userRepository, gardenPlantRepository, testPlant.user_id)
     }
 
     @After

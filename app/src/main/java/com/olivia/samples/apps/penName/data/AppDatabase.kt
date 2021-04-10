@@ -24,17 +24,21 @@ import androidx.room.TypeConverters
 import androidx.sqlite.db.SupportSQLiteDatabase
 import androidx.work.OneTimeWorkRequestBuilder
 import androidx.work.WorkManager
+import com.olivia.samples.apps.penName.data.post.Post
+import com.olivia.samples.apps.penName.data.post.PostDao
+import com.olivia.samples.apps.penName.data.user.User
+import com.olivia.samples.apps.penName.data.user.UserDao
 import com.olivia.samples.apps.penName.utilities.DATABASE_NAME
 import com.olivia.samples.apps.penName.workers.SeedDatabaseWorker
 
 /**
  * The Room database for this app
  */
-@Database(entities = [GardenPlanting::class, Post::class], version = 1, exportSchema = false)
+@Database(entities = [Post::class, User::class], version = 1, exportSchema = false)
 @TypeConverters(Converters::class)
 abstract class AppDatabase : RoomDatabase() {
-    abstract fun gardenPlantingDao(): GardenPlantingDao
-    abstract fun plantDao(): PlantDao
+    abstract fun postDao(): PostDao
+    abstract fun userDao(): UserDao
 
     companion object {
 

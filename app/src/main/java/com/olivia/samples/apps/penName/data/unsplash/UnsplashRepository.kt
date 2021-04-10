@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.olivia.samples.apps.penName.data
+package com.olivia.samples.apps.penName.data.unsplash
 
 import androidx.paging.Pager
 import androidx.paging.PagingConfig

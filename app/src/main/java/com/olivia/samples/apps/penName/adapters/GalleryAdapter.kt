@@ -25,7 +25,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.olivia.samples.apps.penName.GalleryFragment
 import com.olivia.samples.apps.penName.adapters.GalleryAdapter.GalleryViewHolder
-import com.olivia.samples.apps.penName.data.UnsplashPhoto
+import com.olivia.samples.apps.penName.data.unsplash.UnsplashPhoto
 import com.olivia.samples.apps.penName.databinding.ListItemPhotoBinding
 
 /**

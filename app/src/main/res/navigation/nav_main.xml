@@ -36,9 +36,9 @@
 
     <fragment
         android:id="@+id/plant_profile"
-        android:name="com.olivia.samples.apps.penName.PlantDetailFragment"
+        android:name="com.olivia.samples.apps.penName.UserProfileFragment"
         android:label="Profile"
-        tools:layout="@layout/fragment_plant_detail">
+        tools:layout="@layout/fragment_user_profile">
         <argument
             android:name="plantId"
             app:argType="string" />

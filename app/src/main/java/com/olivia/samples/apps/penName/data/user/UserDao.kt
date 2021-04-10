@@ -14,28 +14,26 @@
  * limitations under the License.
  */
 
-package com.olivia.samples.apps.penName.data
+package com.olivia.samples.apps.penName.data.user
 
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
+import com.olivia.samples.apps.penName.data.user.User
 import kotlinx.coroutines.flow.Flow
 
 /**
- * The Data Access Object for the Plant class.
+ * The Data Access Object for the User class.
  */
 @Dao
-interface PlantDao {
-    @Query("SELECT * FROM posts ORDER BY name")
-    fun getPlants(): Flow<List<Post>>
+interface UserDao {
+    @Query("SELECT * FROM user ORDER BY name")
+    fun getUsers(): Flow<List<User>>
 
-    @Query("SELECT * FROM posts WHERE growZoneNumber = :growZoneNumber ORDER BY name")
-    fun getPlantsWithGrowZoneNumber(growZoneNumber: Int): Flow<List<Post>>
-
-    @Query("SELECT * FROM posts WHERE id = :postId")
-    fun getPlant(postId: String): Flow<Post>
+    @Query("SELECT * FROM user WHERE userId = :userId")
+    fun getUser(userId: String): Flow<User>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertAll(posts: List<Post>)
+    suspend fun insertAll(users: List<User>)
 }

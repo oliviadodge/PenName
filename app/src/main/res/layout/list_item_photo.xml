@@ -24,7 +24,7 @@
             type="android.view.View.OnClickListener"/>
         <variable
             name="photo"
-            type="com.olivia.samples.apps.penName.data.UnsplashPhoto"/>
+            type="com.olivia.samples.apps.penName.data.unsplash.UnsplashPhoto"/>
     </data>
 
     <com.olivia.samples.apps.penName.views.MaskedCardView

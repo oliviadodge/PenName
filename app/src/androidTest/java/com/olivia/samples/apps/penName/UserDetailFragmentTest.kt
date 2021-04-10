@@ -41,17 +41,17 @@ import org.junit.Test
 import org.junit.runner.RunWith
 
 @RunWith(AndroidJUnit4::class)
-class PostDetailFragmentTest {
+class UserDetailFragmentTest {
 
     @Rule
     @JvmField
-    val activityTestRule = ActivityTestRule(GardenActivity::class.java)
+    val activityTestRule = ActivityTestRule(MainActivity::class.java)
 
     @Before
     fun jumpToPlantDetailFragment() {
         activityTestRule.activity.apply {
             runOnUiThread {
-                val bundle = Bundle().apply { putString("plantId", testPlant.postId) }
+                val bundle = Bundle().apply { putString("plantId", testPlant.user_id) }
                 findNavController(R.id.nav_host_main).navigate(R.id.bottom_nav_menu_profile, bundle)
             }
         }

@@ -22,7 +22,8 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.Navigation
 import com.olivia.samples.apps.penName.adapters.Listener
-import com.olivia.samples.apps.penName.adapters.FeedAdapter
+import com.olivia.samples.apps.penName.adapters.PostAdapter
+import com.olivia.samples.apps.penName.adapters.PostClickListener
 import com.olivia.samples.apps.penName.databinding.FragmentHomeFeedBinding
 import com.olivia.samples.apps.penName.viewmodels.HomeFeedViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -40,21 +41,14 @@ class HomeFeedFragment : Fragment() {
         val binding = FragmentHomeFeedBinding.inflate(inflater, container, false)
         context ?: return binding.root
 
-        val adapter = FeedAdapter(object : Listener {
-            override fun onProfileClicked(profileId: String) {
-                val direction = BottomNavFragmentDirections.actionHomeFeedToProfile(profileId)
-                val navController = Navigation.findNavController(activity!!, R.id.nav_host_main)
-                navController.navigate(direction)
-            }
-
-        })
+        val adapter = PostAdapter()
         binding.feedRecyclerView.adapter = adapter
         subscribeUi(adapter)
 
         return binding.root
     }
 
-    private fun subscribeUi(adapter: FeedAdapter) {
+    private fun subscribeUi(adapter: PostAdapter) {
         viewModel.feed.observe(viewLifecycleOwner) { feed ->
             adapter.submitList(feed)
         }

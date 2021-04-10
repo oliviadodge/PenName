@@ -17,7 +17,7 @@
 package com.olivia.samples.apps.penName.api
 
 import com.olivia.samples.apps.penName.BuildConfig
-import com.olivia.samples.apps.penName.data.UnsplashSearchResponse
+import com.olivia.samples.apps.penName.data.unsplash.UnsplashSearchResponse
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import okhttp3.logging.HttpLoggingInterceptor.Level

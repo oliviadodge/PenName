@@ -49,7 +49,7 @@
             android:paddingTop="@dimen/gallery_header_margin"
             app:layoutManager="androidx.recyclerview.widget.StaggeredGridLayoutManager"
             app:spanCount="@integer/grid_columns"
-            tools:context="com.olivia.samples.apps.penName.GardenActivity"
+            tools:context="com.olivia.samples.apps.penName.MainActivity"
             tools:listitem="@layout/list_item_photo"/>
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>

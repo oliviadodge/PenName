@@ -18,25 +18,28 @@ package com.olivia.samples.apps.penName.data
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.room.Room
-import androidx.test.ext.junit.runners.AndroidJUnit4
+import androidx.test.espresso.matcher.ViewMatchers.assertThat
 import androidx.test.platform.app.InstrumentationRegistry
+import com.olivia.samples.apps.penName.data.post.Post
+import com.olivia.samples.apps.penName.data.post.PostDao
+import com.olivia.samples.apps.penName.utilities.testCalendar
+import com.olivia.samples.apps.penName.utilities.testGardenPlanting
+import com.olivia.samples.apps.penName.utilities.testPlant
+import com.olivia.samples.apps.penName.utilities.testPlants
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.runBlocking
-import org.hamcrest.Matchers.equalTo
+import org.hamcrest.CoreMatchers.equalTo
 import org.junit.After
-import org.junit.Assert.assertThat
+import org.junit.Assert.assertFalse
+import org.junit.Assert.assertTrue
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
-import org.junit.runner.RunWith
 
-@RunWith(AndroidJUnit4::class)
 class PostDaoTest {
     private lateinit var database: AppDatabase
-    private lateinit var plantDao: PlantDao
-    private val plantA = Post("1", "A", "", 1, 1, "")
-    private val plantB = Post("2", "B", "", 1, 1, "")
-    private val plantC = Post("3", "C", "", 2, 2, "")
+    private lateinit var postDao: PostDao
+    private var testGardenPlantingId: Long = 0
 
     @get:Rule
     var instantTaskExecutorRule = InstantTaskExecutorRule()
@@ -44,38 +47,55 @@ class PostDaoTest {
     @Before fun createDb() = runBlocking {
         val context = InstrumentationRegistry.getInstrumentation().targetContext
         database = Room.inMemoryDatabaseBuilder(context, AppDatabase::class.java).build()
-        plantDao = database.plantDao()
+        postDao = database.postDao()
 
-        // Insert plants in non-alphabetical order to test that results are sorted by name
-        plantDao.insertAll(listOf(plantB, plantC, plantA))
+        database.userDao().insertAll(testPlants)
+        testGardenPlantingId = postDao.insertPost(testGardenPlanting)
     }
 
     @After fun closeDb() {
         database.close()
     }
 
-    @Test fun testGetPlants() = runBlocking {
-        val plantList = plantDao.getPlants().first()
-        assertThat(plantList.size, equalTo(3))
-
-        // Ensure plant list is sorted by name
-        assertThat(plantList[0], equalTo(plantA))
-        assertThat(plantList[1], equalTo(plantB))
-        assertThat(plantList[2], equalTo(plantC))
+    @Test fun testGetGardenPlantings() = runBlocking {
+        val gardenPlanting2 = Post(
+            testPlants[1].user_id,
+            testCalendar,
+            testCalendar
+        ).also { it.gardenPlantingId = 2 }
+        postDao.insertPost(gardenPlanting2)
+        assertThat(postDao.getPosts().first().size, equalTo(2))
     }
 
-    @Test fun testGetPlantsWithGrowZoneNumber() = runBlocking {
-        val plantList = plantDao.getPlantsWithGrowZoneNumber(1).first()
-        assertThat(plantList.size, equalTo(2))
-        assertThat(plantDao.getPlantsWithGrowZoneNumber(2).first().size, equalTo(1))
-        assertThat(plantDao.getPlantsWithGrowZoneNumber(3).first().size, equalTo(0))
-
-        // Ensure plant list is sorted by name
-        assertThat(plantList[0], equalTo(plantA))
-        assertThat(plantList[1], equalTo(plantB))
+    @Test fun testDeleteGardenPlanting() = runBlocking {
+        val gardenPlanting2 = Post(
+            testPlants[1].user_id,
+            testCalendar,
+            testCalendar
+        ).also { it.gardenPlantingId = 2 }
+        postDao.insertPost(gardenPlanting2)
+        assertThat(postDao.getPosts().first().size, equalTo(2))
+        postDao.deletePost(gardenPlanting2)
+        assertThat(postDao.getPosts().first().size, equalTo(1))
     }
 
-    @Test fun testGetPlant() = runBlocking {
-        assertThat(plantDao.getPlant(plantA.postId).first(), equalTo(plantA))
+    @Test fun testGetGardenPlantingForPlant() = runBlocking {
+        assertTrue(postDao.isPlanted(testPlant.user_id).first())
+    }
+
+    @Test fun testGetGardenPlantingForPlant_notFound() = runBlocking {
+        assertFalse(postDao.isPlanted(testPlants[2].user_id).first())
+    }
+
+    @Test fun testGetPlantAndGardenPlantings() = runBlocking {
+        val plantAndGardenPlantings = postDao.getPostsFromUser().first()
+        assertThat(plantAndGardenPlantings.size, equalTo(1))
+
+        /**
+         * Only the [testPlant] has been planted, and thus has an associated [Post]
+         */
+        assertThat(plantAndGardenPlantings[0].user, equalTo(testPlant))
+        assertThat(plantAndGardenPlantings[0].posts.size, equalTo(1))
+        assertThat(plantAndGardenPlantings[0].posts[0], equalTo(testGardenPlanting))
     }
 }

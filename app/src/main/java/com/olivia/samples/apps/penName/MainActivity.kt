@@ -14,19 +14,18 @@
  * limitations under the License.
  */
 
-package com.olivia.samples.apps.penName.data
+package com.olivia.samples.apps.penName
 
-import androidx.room.Embedded
-import androidx.room.Relation
+import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
+import com.olivia.samples.apps.penName.databinding.ActivityMainBinding
+import dagger.hilt.android.AndroidEntryPoint
 
-/**
- * This class captures the relationship between a [Post] and a user's [GardenPlanting], which is
- * used by Room to fetch the related entities.
- */
-data class PlantAndGardenPlantings(
-        @Embedded
-    val post: Post,
+@AndroidEntryPoint
+class MainActivity : AppCompatActivity() {
 
-        @Relation(parentColumn = "id", entityColumn = "post_id")
-    val gardenPlantings: List<GardenPlanting> = emptyList()
-)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+    }
+}

@@ -18,8 +18,8 @@ package com.olivia.samples.apps.penName.di
 
 import android.content.Context
 import com.olivia.samples.apps.penName.data.AppDatabase
-import com.olivia.samples.apps.penName.data.GardenPlantingDao
-import com.olivia.samples.apps.penName.data.PlantDao
+import com.olivia.samples.apps.penName.data.post.PostDao
+import com.olivia.samples.apps.penName.data.user.UserDao
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -38,12 +38,12 @@ class DatabaseModule {
     }
 
     @Provides
-    fun providePlantDao(appDatabase: AppDatabase): PlantDao {
-        return appDatabase.plantDao()
+    fun provideUserDao(appDatabase: AppDatabase): UserDao {
+        return appDatabase.userDao()
     }
 
     @Provides
-    fun provideGardenPlantingDao(appDatabase: AppDatabase): GardenPlantingDao {
-        return appDatabase.gardenPlantingDao()
+    fun providePostDao(appDatabase: AppDatabase): PostDao {
+        return appDatabase.postDao()
     }
 }

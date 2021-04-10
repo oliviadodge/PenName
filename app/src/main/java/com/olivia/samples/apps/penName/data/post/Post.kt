@@ -14,19 +14,22 @@
  * limitations under the License.
  */
 
-package com.olivia.samples.apps.penName
+package com.olivia.samples.apps.penName.data.post
 
-import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
-import androidx.databinding.DataBindingUtil.setContentView
-import com.olivia.samples.apps.penName.databinding.ActivityGardenBinding
-import dagger.hilt.android.AndroidEntryPoint
+import androidx.room.*
+import com.olivia.samples.apps.penName.data.user.User
+import java.util.Calendar
 
-@AndroidEntryPoint
-class GardenActivity : AppCompatActivity() {
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView<ActivityGardenBinding>(this, R.layout.activity_garden)
-    }
+@Entity(
+        foreignKeys = [
+            ForeignKey(entity = User::class, parentColumns = ["userId"], childColumns = ["userId"])
+        ]
+)
+data class Post(
+        val userId: String,
+        val postDate: Calendar = Calendar.getInstance(),
+        val imageUrl: String = "",
+        val description: String = ""
+) {
+    @PrimaryKey(autoGenerate = true) var postId: Int = 0
 }
