@@ -30,6 +30,7 @@ import com.olivia.samples.apps.penName.data.user.User
 import com.olivia.samples.apps.penName.data.user.UserDao
 import com.olivia.samples.apps.penName.utilities.DATABASE_NAME
 import com.olivia.samples.apps.penName.workers.SeedDatabaseWorker
+import com.olivia.samples.apps.penName.workers.SeedPostsWorker
 
 /**
  * The Room database for this app
@@ -54,13 +55,13 @@ abstract class AppDatabase : RoomDatabase() {
         // Create and pre-populate the database. See this article for more details:
         // https://medium.com/google-developers/7-pro-tips-for-room-fbadea4bfbd1#4785
         private fun buildDatabase(context: Context): AppDatabase {
-            return Room.databaseBuilder(context, AppDatabase::class.java, DATABASE_NAME)
-                .addCallback(
+            return Room.databaseBuilder(context, AppDatabase::class.java, DATABASE_NAME).addCallback(
                     object : RoomDatabase.Callback() {
                         override fun onCreate(db: SupportSQLiteDatabase) {
                             super.onCreate(db)
                             val request = OneTimeWorkRequestBuilder<SeedDatabaseWorker>().build()
-                            WorkManager.getInstance(context).enqueue(request)
+                            val request2 = OneTimeWorkRequestBuilder<SeedPostsWorker>().build()
+                            WorkManager.getInstance(context).beginWith(request).then(request2).enqueue()
                         }
                     }
                 )

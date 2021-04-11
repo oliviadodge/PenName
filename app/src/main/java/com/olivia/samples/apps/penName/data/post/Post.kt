@@ -27,9 +27,8 @@ import java.util.Calendar
 )
 data class Post(
         val userId: String,
-        val postDate: Calendar = Calendar.getInstance(),
+        val description: String = "",
         val imageUrl: String = "",
-        val description: String = ""
 ) {
     @PrimaryKey(autoGenerate = true) var postId: Int = 0
 }
