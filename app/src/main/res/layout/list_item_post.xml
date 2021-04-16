@@ -27,7 +27,7 @@
             type="com.olivia.samples.apps.penName.data.post.Post"/>
     </data>
 
-    <com.olivia.samples.apps.penName.views.MaskedCardView
+    <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/card_side_margin"
@@ -38,38 +38,38 @@
         app:cardPreventCornerOverlap="false"
         app:shapeAppearanceOverlay="@style/ShapeAppearance.PenName.Card">
 
-            <androidx.constraintlayout.widget.ConstraintLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/post_image"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/a11y_plant_item_image"
+                android:scaleType="centerInside"
+                app:imageFromUrl="@{post.imageUrl}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:src="@drawable/ic_my_garden_active"/>
 
-                <ImageView
-                    android:id="@+id/plant_item_image"
-                    android:layout_width="0dp"
-                    android:layout_height="220dp"
-                    android:contentDescription="@string/a11y_plant_item_image"
-                    android:scaleType="centerCrop"
-                    app:imageFromUrl="@{post.imageUrl}"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+            <TextView
+                android:id="@+id/post_description"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_normal"
+                android:layout_marginBottom="@dimen/margin_normal"
+                android:layout_marginStart="@dimen/margin_normal"
+                android:layout_marginEnd="@dimen/margin_normal"
+                android:text="@{post.userId + post.description}"
+                android:textAppearance="?attr/textAppearanceListItem"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/post_image"
+                tools:text="pen_name_01 - Found the first stash of spring barn kittens! Aren't they just adorable?" />
 
-                <TextView
-                    android:id="@+id/plant_item_title"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/margin_normal"
-                    android:layout_marginTop="@dimen/margin_normal"
-                    android:text="@{post.description}"
-                    android:textAppearance="?attr/textAppearanceListItem"
-                    android:gravity="center_horizontal"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/plant_item_image"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    tools:text="Tomato"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-    </com.olivia.samples.apps.penName.views.MaskedCardView>
+    </com.google.android.material.card.MaterialCardView>
 
 </layout>

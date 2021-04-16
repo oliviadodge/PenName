@@ -31,8 +31,8 @@ import com.olivia.samples.apps.penName.utilities.USERS_DATA_FILENAME
 import kotlinx.coroutines.coroutineScope
 
 class SeedDatabaseWorker(
-    context: Context,
-    workerParams: WorkerParameters
+        context: Context,
+        workerParams: WorkerParameters
 ) : CoroutineWorker(context, workerParams) {
     override suspend fun doWork(): Result = coroutineScope {
         try {
@@ -44,12 +44,10 @@ class SeedDatabaseWorker(
     }
 
     private suspend fun seedDatabaseTables(): Result {
-        val userList = getUserListFromJsonFile()
-//        val postList = getPostListFromJsonFile()
-
-        val database = AppDatabase.getInstance(applicationContext)
-        database.userDao().insertAll(userList)
-//        database.postDao().insertAll(postList)
+        AppDatabase.getInstance(applicationContext).apply {
+            userDao().insertAll(getUserListFromJsonFile())
+            postDao().insertAll(getPostListFromJsonFile())
+        }
 
         return Result.success()
     }
