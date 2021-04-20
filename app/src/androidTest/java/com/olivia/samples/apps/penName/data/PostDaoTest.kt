@@ -64,7 +64,7 @@ class PostDaoTest {
             testCalendar
         ).also { it.gardenPlantingId = 2 }
         postDao.insertPost(gardenPlanting2)
-        assertThat(postDao.getPosts().first().size, equalTo(2))
+        assertThat(postDao.getFeed().first().size, equalTo(2))
     }
 
     @Test fun testDeleteGardenPlanting() = runBlocking {
@@ -74,9 +74,9 @@ class PostDaoTest {
             testCalendar
         ).also { it.gardenPlantingId = 2 }
         postDao.insertPost(gardenPlanting2)
-        assertThat(postDao.getPosts().first().size, equalTo(2))
+        assertThat(postDao.getFeed().first().size, equalTo(2))
         postDao.deletePost(gardenPlanting2)
-        assertThat(postDao.getPosts().first().size, equalTo(1))
+        assertThat(postDao.getFeed().first().size, equalTo(1))
     }
 
     @Test fun testGetGardenPlantingForPlant() = runBlocking {

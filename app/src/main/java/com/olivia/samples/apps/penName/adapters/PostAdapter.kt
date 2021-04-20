@@ -22,13 +22,14 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.olivia.samples.apps.penName.HomeFeedFragment
+import com.olivia.samples.apps.penName.data.PostAndUser
 import com.olivia.samples.apps.penName.data.post.Post
 import com.olivia.samples.apps.penName.databinding.ListItemPostBinding
 
 /**
  * Adapter for the [RecyclerView] in [HomeFeedFragment].
  */
-class PostAdapter() : ListAdapter<Post, RecyclerView.ViewHolder>(PostDiffCallback()) {
+class PostAdapter() : ListAdapter<PostAndUser, RecyclerView.ViewHolder>(PostDiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return PlantViewHolder(
@@ -49,15 +50,15 @@ class PostAdapter() : ListAdapter<Post, RecyclerView.ViewHolder>(PostDiffCallbac
             private val binding: ListItemPostBinding) : RecyclerView.ViewHolder(binding.root) {
         init {
             binding.setClickListener {
-                binding.post?.let { post ->
+                binding.postAndUser?.let {
                     //TODO nothing should happen?
                 }
             }
         }
 
-        fun bind(item: Post) {
+        fun bind(item: PostAndUser) {
             binding.apply {
-                post = item
+                postAndUser = item
                 executePendingBindings()
             }
         }
@@ -68,13 +69,13 @@ interface PostClickListener {
     fun onPostClicked(postId: Int)
 }
 
-private class PostDiffCallback : DiffUtil.ItemCallback<Post>() {
+private class PostDiffCallback : DiffUtil.ItemCallback<PostAndUser>() {
 
-    override fun areItemsTheSame(oldItem: Post, newItem: Post): Boolean {
-        return oldItem.postId == newItem.postId
+    override fun areItemsTheSame(oldItem: PostAndUser, newItem: PostAndUser): Boolean {
+        return oldItem.post.postId == newItem.post.postId
     }
 
-    override fun areContentsTheSame(oldItem: Post, newItem: Post): Boolean {
+    override fun areContentsTheSame(oldItem: PostAndUser, newItem: PostAndUser): Boolean {
         return oldItem == newItem
     }
 }

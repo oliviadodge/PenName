@@ -23,8 +23,8 @@
             name="clickListener"
             type="android.view.View.OnClickListener"/>
         <variable
-            name="post"
-            type="com.olivia.samples.apps.penName.data.post.Post"/>
+            name="postAndUser"
+            type="com.olivia.samples.apps.penName.data.PostAndUser"/>
     </data>
 
     <LinearLayout
@@ -38,19 +38,34 @@
             android:layout_height="match_parent">
 
             <ImageView
-                android:id="@+id/post_image"
-                android:layout_width="match_parent"
+                android:id="@+id/post_user_profile_pic"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:minHeight="@dimen/post_image_min_height"
-                android:maxHeight="@dimen/post_image_max_height"
+                android:maxHeight="@dimen/user_thumbnail_max_height"
+                android:maxWidth="@dimen/user_thumbnail_max_height"
                 android:contentDescription="@string/a11y_plant_item_image"
-                android:scaleType="matrix"
+                android:scaleType="fitCenter"
                 android:adjustViewBounds="true"
-                app:imageFromUrl="@{post.imageUrl}"
-                app:layout_constraintEnd_toEndOf="parent"
+                app:imageFromUrl="@{postAndUser.user.imageUrl}"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:src="@drawable/ic_my_garden_active"/>
+
+            <ImageView
+                android:id="@+id/post_image"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/a11y_plant_item_image"
+                android:maxHeight="@dimen/post_image_max_height"
+                android:minHeight="@dimen/post_image_min_height"
+                android:scaleType="matrix"
+                app:imageFromUrl="@{postAndUser.post.imageUrl}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/post_user_profile_pic"
+                tools:src="@drawable/ic_my_garden_active" />
 
             <TextView
                 android:id="@+id/post_description"
@@ -60,11 +75,23 @@
                 android:paddingBottom="@dimen/margin_normal"
                 android:paddingStart="@dimen/margin_normal"
                 android:paddingEnd="@dimen/margin_normal"
-                android:text="@{post.description}"
+                android:text="@{postAndUser.post.description}"
                 android:textAppearance="?attr/textAppearanceListItem"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/post_image"
                 tools:text="Found the first stash of spring barn kittens! Aren't they just adorable?" />
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{postAndUser.user.userId}"
+                app:layout_constraintStart_toEndOf="@id/post_user_profile_pic"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toTopOf="@id/post_image"
+                tools:layout_editor_absoluteX="33dp"
+                tools:layout_editor_absoluteY="1dp"
+                tools:text="pen_name_01"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -17,6 +17,7 @@
 package com.olivia.samples.apps.penName.data.post
 
 import androidx.room.*
+import com.olivia.samples.apps.penName.data.PostAndUser
 import com.olivia.samples.apps.penName.data.UserAndPosts
 import com.olivia.samples.apps.penName.data.user.User
 import kotlinx.coroutines.flow.Flow
@@ -27,7 +28,7 @@ import kotlinx.coroutines.flow.Flow
 @Dao
 interface PostDao {
     @Query("SELECT * FROM post")
-    fun getPosts(): Flow<List<Post>>
+    fun getFeed(): Flow<List<PostAndUser>>
 
 //    @Transaction
 //    @Query("SELECT * FROM post WHERE userId = :userId")

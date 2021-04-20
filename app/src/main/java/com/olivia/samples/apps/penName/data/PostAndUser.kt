@@ -14,27 +14,21 @@
  * limitations under the License.
  */
 
-package com.olivia.samples.apps.penName.data.post
+package com.olivia.samples.apps.penName.data
 
-import javax.inject.Inject
-import javax.inject.Singleton
+import androidx.room.Embedded
+import androidx.room.Relation
+import com.olivia.samples.apps.penName.data.post.Post
+import com.olivia.samples.apps.penName.data.user.User
 
-@Singleton
-class PostRepository @Inject constructor(
-    private val postDao: PostDao
-) {
+/**
+ * This class captures the relationship between a [User] and a user's [Post], which is
+ * used by Room to fetch the related entities.
+ */
+data class PostAndUser(
+        @Embedded
+        val post: Post,
 
-    suspend fun createPost(userId: String) {
-        val post = Post(userId = userId)
-        postDao.insertPost(post)
-    }
-
-    suspend fun removePost(post: Post) {
-        postDao.deletePost(post)
-    }
-
-    fun getFeed() = postDao.getFeed()
-
-    //TODO fixme
-//    fun getPostsFromUser(userId: String) = postDao.getPostsFromUser(userId)
-}
+        @Relation(parentColumn = "userId", entityColumn = "userId")
+        val user: User
+)
