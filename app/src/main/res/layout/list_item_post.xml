@@ -27,16 +27,11 @@
             type="com.olivia.samples.apps.penName.data.post.Post"/>
     </data>
 
-    <com.google.android.material.card.MaterialCardView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/card_side_margin"
-        android:layout_marginEnd="@dimen/card_side_margin"
         android:layout_marginBottom="@dimen/card_bottom_margin"
-        android:onClick="@{clickListener}"
-        app:cardElevation="@dimen/card_elevation"
-        app:cardPreventCornerOverlap="false"
-        app:shapeAppearanceOverlay="@style/ShapeAppearance.PenName.Card">
+        android:orientation="vertical">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -46,8 +41,11 @@
                 android:id="@+id/post_image"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:minHeight="@dimen/post_image_min_height"
+                android:maxHeight="@dimen/post_image_max_height"
                 android:contentDescription="@string/a11y_plant_item_image"
-                android:scaleType="centerInside"
+                android:scaleType="matrix"
+                android:adjustViewBounds="true"
                 app:imageFromUrl="@{post.imageUrl}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -58,18 +56,18 @@
                 android:id="@+id/post_description"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/margin_normal"
-                android:layout_marginBottom="@dimen/margin_normal"
-                android:layout_marginStart="@dimen/margin_normal"
-                android:layout_marginEnd="@dimen/margin_normal"
-                android:text="@{post.userId + post.description}"
+                android:paddingTop="@dimen/margin_normal"
+                android:paddingBottom="@dimen/margin_normal"
+                android:paddingStart="@dimen/margin_normal"
+                android:paddingEnd="@dimen/margin_normal"
+                android:text="@{post.description}"
                 android:textAppearance="?attr/textAppearanceListItem"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/post_image"
-                tools:text="pen_name_01 - Found the first stash of spring barn kittens! Aren't they just adorable?" />
+                tools:text="Found the first stash of spring barn kittens! Aren't they just adorable?" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-    </com.google.android.material.card.MaterialCardView>
+    </LinearLayout>
 
 </layout>

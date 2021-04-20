@@ -30,7 +30,8 @@
     <dimen name="margin_small">8dp</dimen>
     <dimen name="margin_extra_small">4dp</dimen>
 
-    <dimen name="plant_item_image_height">160dp</dimen>
+    <dimen name="post_image_min_height">240dp</dimen>
+    <dimen name="post_image_max_height">500dp</dimen>
 
     <dimen name="card_side_margin">12dp</dimen>
     <dimen name="card_bottom_margin">26dp</dimen>
