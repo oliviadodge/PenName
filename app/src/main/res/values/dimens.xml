@@ -32,7 +32,7 @@
 
     <dimen name="post_image_min_height">240dp</dimen>
     <dimen name="post_image_max_height">500dp</dimen>
-    <dimen name="user_thumbnail_max_height">60dp</dimen>
+    <dimen name="user_thumbnail_max_height">66dp</dimen>
 
     <dimen name="card_side_margin">12dp</dimen>
     <dimen name="card_bottom_margin">26dp</dimen>

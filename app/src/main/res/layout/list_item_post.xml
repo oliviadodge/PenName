@@ -41,20 +41,21 @@
                 android:id="@+id/post_user_profile_pic"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:maxHeight="@dimen/user_thumbnail_max_height"
-                android:maxWidth="@dimen/user_thumbnail_max_height"
-                android:contentDescription="@string/a11y_plant_item_image"
-                android:scaleType="fitCenter"
                 android:adjustViewBounds="true"
+                android:contentDescription="@string/a11y_plant_item_image"
+                android:maxWidth="@dimen/user_thumbnail_max_height"
+                android:maxHeight="@dimen/user_thumbnail_max_height"
+                android:scaleType="fitCenter"
                 app:imageFromUrl="@{postAndUser.user.imageUrl}"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                tools:src="@drawable/ic_my_garden_active"/>
+                tools:src="@drawable/ic_my_garden_active" />
 
             <ImageView
                 android:id="@+id/post_image"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
                 android:adjustViewBounds="true"
                 android:contentDescription="@string/a11y_plant_item_image"
                 android:maxHeight="@dimen/post_image_max_height"
@@ -71,10 +72,10 @@
                 android:id="@+id/post_description"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:paddingTop="@dimen/margin_normal"
-                android:paddingBottom="@dimen/margin_normal"
                 android:paddingStart="@dimen/margin_normal"
+                android:paddingTop="@dimen/margin_normal"
                 android:paddingEnd="@dimen/margin_normal"
+                android:paddingBottom="@dimen/margin_normal"
                 android:text="@{postAndUser.post.description}"
                 android:textAppearance="?attr/textAppearanceListItem"
                 app:layout_constraintStart_toStartOf="parent"
@@ -85,13 +86,14 @@
                 android:id="@+id/textView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
                 android:text="@{postAndUser.user.userId}"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toBottomOf="@+id/post_user_profile_pic"
                 app:layout_constraintStart_toEndOf="@id/post_user_profile_pic"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toTopOf="@id/post_image"
-                tools:layout_editor_absoluteX="33dp"
-                tools:layout_editor_absoluteY="1dp"
-                tools:text="pen_name_01"/>
+                app:layout_constraintVertical_weight="1.0"
+                tools:text="pen_name_01" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
