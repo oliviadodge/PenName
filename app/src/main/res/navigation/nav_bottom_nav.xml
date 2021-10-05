@@ -33,6 +33,12 @@
         tools:layout="@layout/fragment_home_feed" />
 
     <fragment
+        android:id="@+id/bottom_nav_menu_people"
+        android:name="com.olivia.samples.apps.penName.HomeFeedFragment"
+        android:label="People"
+        tools:layout="@layout/fragment_home_feed" />
+
+    <fragment
         android:id="@+id/bottom_nav_menu_profile"
         android:name="com.olivia.samples.apps.penName.UserProfileFragment"
         android:label="Profile"

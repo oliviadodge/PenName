@@ -52,6 +52,7 @@
     <string name="plant_detail_image_content_description" translation_description="Content description for the header / hero image that is show at the top of the plant detail screen.">Image of plant</string>
     <string name="bottom_nav_menu_home_text">Home</string>
     <string name="bottom_nav_menu_create_text">Create Post</string>
+    <string name="bottom_nav_menu_people_text">People</string>
     <string name="bottom_nav_menu_profile_text">Profile</string>
 
 </resources>

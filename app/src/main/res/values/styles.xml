@@ -17,13 +17,14 @@
 <resources>
 
     <!-- To see how these attributes are used, please visit https://material.io/develop/android/theming/color/ -->
-    <style name="Base.Theme.PenName" parent="Theme.MaterialComponents.DayNight.NoActionBar">
-        <item name="colorPrimary">@color/blue</item>
-        <item name="colorPrimaryVariant">@color/blue_dark</item>
-        <item name="colorOnPrimary">@color/black</item>
-        <item name="colorSecondary">@color/orange</item>
-        <item name="colorSecondaryVariant">@color/orange_dark</item>
-        <item name="colorOnSecondary">@color/black</item>
+    <style name="Base.Theme.PenName" parent="Theme.MaterialComponents.DayNight">
+        <item name="colorPrimary">#512da8</item>
+        <item name="colorPrimaryDark">#140078</item>
+        <item name="colorPrimaryVariant">#8559da</item>
+        <item name="colorOnPrimary">#ffffff</item>
+        <item name="colorSecondary">#18ffff</item>
+        <item name="colorSecondaryVariant">#00cbcc</item>
+        <item name="colorOnSecondary">#000000</item>
     </style>
 
     <style name="Theme.PenName" parent="Base.Theme.PenName"/>
